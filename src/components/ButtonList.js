@@ -2,8 +2,8 @@ import React from 'react'
 
 const ButtonList = () => {
     return (
-        <div>ButtonList</div>
+        <div className='ml-[600px]'>ButtonList</div>
     )
 }
 
-export default ButtonList
+export default ButtonList;
