@@ -8,3 +8,6 @@ export const UserIcon_URL = "https://www.iconpacks.net/icons/2/free-user-icon-32
 
 export const search_icon_URL = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw8xTuZ_aEN415ghwafWG6HlfdquSjO5174g&";
 
+export const API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY;
+
+export const YOUTUBE_VIDEOS_API = "https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics&chart=mostPopular&regionCode=IN&maxResults=20&key=" + API_KEY;
