@@ -1,14 +1,24 @@
 import React from "react";
 import { Hamburger_URL, UserIcon_URL, YouTube_Logo_URL, search_icon_URL } from "../utils/Constants";
+import { useDispatch } from "react-redux";
+import { togglemenu } from "../utils/appSlice";
 
 const Header = () => {
+
+    const dispatch = useDispatch();
+
+    const togglemenuHandler = () => {
+        dispatch(togglemenu());
+    };
+
     return (
         <div className="fixed top-0 left-0 right-0 z-50 h-14 bg-white border-b border-gray-200 shadow-sm">
 
             <div className="flex h-full items-center justify-between px-4">
 
                 <div className="flex items-center gap-2">
-                    <button className="p-2 rounded-full hover:bg-gray-100">
+                    <button onClick={() => togglemenuHandler()}
+                        className="p-2 rounded-full hover:bg-gray-100  transition-transform duration-200 hover:scale-105 active:scale-95">
                         <img
                             src={Hamburger_URL}
                             alt="menu"
