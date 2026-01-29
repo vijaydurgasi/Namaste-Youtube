@@ -10,4 +10,4 @@ export const search_icon_URL = "https://encrypted-tbn0.gstatic.com/images?q=tbn:
 
 export const API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY;
 
-export const YOUTUBE_VIDEOS_API = "https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics&chart=mostPopular&regionCode=IN&maxResults=20&key=" + API_KEY;
+export const YOUTUBE_VIDEOS_API = "https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics&chart=mostPopular&maxResults=50&regionCode=IN&key=" + API_KEY;

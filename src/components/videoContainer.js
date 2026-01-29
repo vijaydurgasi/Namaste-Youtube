@@ -1,8 +1,10 @@
-import React from 'react'
-import { useEffect } from 'react';
+import React, { useState, useEffect } from 'react'
 import { YOUTUBE_VIDEOS_API } from '../utils/Constants';
+import VideoCard from './VideoCard';
 
 const VideoContainer = () => {
+
+    const [videos, setVideos] = useState([]);
 
     useEffect(() => {
 
@@ -13,11 +15,16 @@ const VideoContainer = () => {
     const getVideos = async () => {
         const data = await fetch(YOUTUBE_VIDEOS_API);
         const json = await data.json();
-        console.log("json Data", json);
+        // console.log("json Data", json);
+        setVideos(json.items);
     };
 
     return (
-        <div className='ml-[600px] '>videoContainer</div>
+        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4'>
+            {videos.map((video) => (
+                <VideoCard key={video.id} info={video} />
+            ))};
+        </div>
     )
 }
 
