@@ -1,15 +1,18 @@
 import React from 'react'
 import Sidebar from './Sidebar'
-import MainContainer from './MainContainer'
+import { Outlet } from 'react-router-dom';
 
 const Body = () => {
     return (
         <div className="flex pt-14">
             <Sidebar />
-            <MainContainer />
+            <Outlet />
         </div>
     );
 };
 
 
 export default Body;
+
+// The outlet replaces the Body component based on the route we provide like if it is / Body is rendered if it is watch, watch should render
+// 

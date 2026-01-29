@@ -1,10 +1,7 @@
 import React from 'react'
 import Button from './Button';
 
-
-
 const ButtonList = () => {
-
 
     const buttonList = [
         "All", "Hyped", "Live", "News", "Podcast", "Music", "Gaming", "Cooking", "Cricket", "Trading", "Fitness", "Comedy", "Movies", "Technology", "Education"];

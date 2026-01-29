@@ -4,15 +4,34 @@ import "./App.css";
 import Body from "./components/Body";
 import Header from "./components/Header";
 import store from "./utils/Store";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import MainContainer from "./components/MainContainer"
+import WatchPage from "./components/WatchPage";
+
+
 
 function App() {
 
+  const appRouter = createBrowserRouter([{
+    path: "/",
+    element: <Body />, // we are just changing the body component like if the url has / body should load and if it has watch, watch should load
+    children: [
+      {
+        path: "/",
+        element: <MainContainer />
+      },
+      {
+        path: "watch",
+        element: <WatchPage />
+      },
+    ]
+  }]);
 
   return (
     <Provider store={store}>
       <div>
         <Header />
-        <Body />
+        <RouterProvider router={appRouter} />
       </div>
     </Provider>
   );
