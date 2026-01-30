@@ -1,17 +1,23 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 
 const Sidebar = () => {
 
     const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
 
-    if (!isMenuOpen) return null;
+    if (!isMenuOpen) return null; // use shemmer here
 
     return (
         <div className={`h-screen border-r border-gray-300 overflow-y-auto transition-[width] duration-300 ease-in-out ${isMenuOpen ? 'w-48' : "w-0"}`}>
 
             <div className={` h-full overflow-y-auto transition-all duration-200 ease-in-out  ${isMenuOpen ? "opacity-100 translate-x-0 p-4" : "opacity-0 -translate-x-4 p-0"}`}>
+
+                <h1 className="font-semibold mb-3">Home</h1>
+                <Link to={"/"}><SidebarItem icon="🏠" label="Home" /></Link>
+
+                <hr className="my-4" />
 
                 <h1 className="font-semibold mb-3">Subscriptions</h1>
                 <SidebarItem icon="🎵" label="Music" />
