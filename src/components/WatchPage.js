@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { closeMenu } from '../utils/appSlice';
 import { useSearchParams } from 'react-router-dom';
+import Shimmer from '../utils/Shimmer';
 
 const WatchPage = () => {
 
@@ -16,7 +17,7 @@ const WatchPage = () => {
   }, [dispatch]);
 
   if (!videoId) {
-    return <h1>Video Not found</h1>;
+    return <Shimmer type="watch" />;
   }
 
   return (
