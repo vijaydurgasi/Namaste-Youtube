@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Hamburger_URL, UserIcon_URL, YOUTUBE_SEARCH_API, YouTube_Logo_URL, search_icon_URL } from "../utils/Constants";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { togglemenu } from "../utils/appSlice";
+import { cacheResults } from "../utils/searchSlice";
+
 
 const Header = () => {
 
@@ -9,6 +11,9 @@ const Header = () => {
     const [suggestions, setSuggestions] = useState([]);
     const [showSuggestions, setShowSuggestions] = useState(false);
 
+    const dispatch = useDispatch();
+
+    const searchCache = useSelector((store) => store.search);
 
     useEffect(() => {
 
@@ -17,18 +22,29 @@ const Header = () => {
         const getSearchSuggestion = async () => {
             const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
             const json = await data.json();
+
             setSuggestions(json[1]);
             console.log(json);
+
+            dispatch(cacheResults({
+                [searchQuery]: json[1],
+            }));
         };
 
-        const timer = setTimeout(getSearchSuggestion, 200);
+        const timer = setTimeout(() => {
+
+            if (searchCache[searchQuery]) {
+                setSuggestions(searchCache[searchQuery]);
+            } else {
+                getSearchSuggestion();
+            }
+
+        }, 200);
 
         return () => clearTimeout(timer);
 
-    }, [searchQuery]);
+    }, [searchQuery, searchCache, dispatch]);
 
-
-    const dispatch = useDispatch();
 
     const togglemenuHandler = () => {
         dispatch(togglemenu());
