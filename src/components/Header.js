@@ -1,9 +1,32 @@
-import React from "react";
-import { Hamburger_URL, UserIcon_URL, YouTube_Logo_URL, search_icon_URL } from "../utils/Constants";
+import React, { useState, useEffect } from "react";
+import { Hamburger_URL, UserIcon_URL, YOUTUBE_SEARCH_API, YouTube_Logo_URL, search_icon_URL } from "../utils/Constants";
 import { useDispatch } from "react-redux";
 import { togglemenu } from "../utils/appSlice";
 
 const Header = () => {
+
+    const [searchQuery, setSearchQuery] = useState("");
+    const [suggestions, setSuggestions] = useState([]);
+    const [showSuggestions, setShowSuggestions] = useState(false);
+
+
+    useEffect(() => {
+
+        if (!searchQuery.trim()) return;
+
+        const getSearchSuggestion = async () => {
+            const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
+            const json = await data.json();
+            setSuggestions(json[1]);
+            console.log(json);
+        };
+
+        const timer = setTimeout(getSearchSuggestion, 200);
+
+        return () => clearTimeout(timer);
+
+    }, [searchQuery]);
+
 
     const dispatch = useDispatch();
 
@@ -28,19 +51,41 @@ const Header = () => {
                     <img
                         src={YouTube_Logo_URL}
                         alt="YouTube"
-                        className="h-12 cursor-pointer "
-                    />
+                        className="h-12 cursor-pointer " />
                 </div>
+                <div className="relative flex items-center w-[45%] min-w-[300px] max-w-[600px]">
 
-                <div className="flex items-center w-[45%] min-w-[300px] max-w-[600px]">
                     <input
                         type="text"
                         placeholder="Search"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        onFocus={() => setShowSuggestions(true)}
+                        onBlur={() => setShowSuggestions(false)}
                         className="w-full h-10 px-4 text-sm border border-gray-300 rounded-l-full focus:outline-none focus:border-blue-500" />
 
-                    <button className="h-10 px-6 border border-l-0 border-gray-300 rounded-r-full flex items-center justify-center   hover:border-gray-800">
+                    <button className="h-10 px-6 border border-l-0 border-gray-300 rounded-r-full flex items-center justify-center hover:bg-gray-100">
                         <img className="h-5 w-5 opacity-70" src={search_icon_URL} alt="search icon" />
                     </button>
+
+                    {searchQuery.trim() !== "" && showSuggestions && suggestions.length > 0 && (
+                        <div className="absolute top-12 left-0 w-full bg-white shadow-lg rounded-xl border border-gray-200 overflow-hidden z-50">
+
+                            <ul className="max-h-96 overflow-y-auto py-2">
+
+                                {suggestions.map((s) => (
+                                    <li
+                                        key={s}
+                                        className="flex items-center gap-3 px-4 py-2 hover:bg-gray-100 cursor-pointer text-sm"
+                                    >
+                                        <span className="text-gray-500">🔍</span>
+                                        <span>{s}</span>
+                                    </li>
+                                ))}
+
+                            </ul>
+                        </div>
+                    )}
                 </div>
 
                 <div className="flex items-center">

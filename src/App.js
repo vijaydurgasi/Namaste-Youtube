@@ -8,13 +8,11 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import MainContainer from "./components/MainContainer"
 import WatchPage from "./components/WatchPage";
 
-
-
 function App() {
 
   const appRouter = createBrowserRouter([{
     path: "/",
-    element: <Body />, // we are just changing the body component like if the url has / body should load and if it has watch, watch should load
+    element: <Body />, 
     children: [
       {
         path: "/",
@@ -35,7 +33,7 @@ function App() {
       </div>
     </Provider>
   );
-}
+};
 
 export default App;
 

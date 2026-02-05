@@ -4,13 +4,13 @@ export const formatViewCount = (views) => {
     const num = Number(views);
 
     // Indian format
-    if (num >= 1_00_00_000) {
-        return (num / 1_00_00_000).toFixed(1) + "Cr";
-    }
+    // if (num >= 1_00_00_000) {
+    //     return (num / 1_00_00_000).toFixed(1) + "Cr";
+    // }
 
-    if (num >= 1_00_000) {
-        return (num / 1_00_000).toFixed(1) + "L";
-    }
+    // if (num >= 1_00_000) {
+    //     return (num / 1_00_000).toFixed(1) + "L";
+    // }
 
     // International format
     if (num >= 1_000_000_000) {
