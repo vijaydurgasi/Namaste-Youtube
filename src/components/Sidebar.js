@@ -9,7 +9,7 @@ const Sidebar = () => {
     if (!isMenuOpen) return null; // use shemmer here
 
     return (
-        <div className={`h-screen border-r border-gray-300 overflow-y-auto transition-[width] duration-300 ease-in-out ${isMenuOpen ? 'w-48' : "w-0"}`}>
+        <div className={`h-screen  flex-shrink-0 border-r border-gray-300 overflow-y-auto transition-[width] duration-300 ease-in-out ${isMenuOpen ? 'w-48' : "w-0"}`}>
 
             <div className={` h-full overflow-y-auto transition-all duration-200 ease-in-out  ${isMenuOpen ? "opacity-100 translate-x-0 p-4" : "opacity-0 -translate-x-4 p-0"}`}>
 
