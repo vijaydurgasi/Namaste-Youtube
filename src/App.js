@@ -7,6 +7,7 @@ import store from "./utils/Store";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import MainContainer from "./components/MainContainer"
 import WatchPage from "./components/WatchPage";
+import CategoryPage from "./components/CategoryPage";
 
 
 function App({ info }) {
@@ -24,8 +25,9 @@ function App({ info }) {
         element: <WatchPage />
       },
       {
-        path: "",
-      },
+        path: "category/:type",
+        element: <CategoryPage />
+      }
     ]
   }]);
 

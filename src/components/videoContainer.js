@@ -4,7 +4,7 @@ import VideoCard from './VideoCard';
 import { Link } from 'react-router-dom';
 import Shimmer from '../utils/Shimmer';
 
-const VideoContainer = () => {
+const VideoContainer = ({ api }) => {
 
     const [videos, setVideos] = useState([]);
 
@@ -12,10 +12,10 @@ const VideoContainer = () => {
 
         getVideos();
 
-    }, []);
+    }, [api]);
 
     const getVideos = async () => {
-        const data = await fetch(YOUTUBE_VIDEOS_API);
+        const data = await fetch(api || YOUTUBE_VIDEOS_API);
         const json = await data.json();
         // console.log("json Data", json);
         setVideos(json.items);

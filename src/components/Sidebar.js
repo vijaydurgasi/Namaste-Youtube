@@ -19,9 +19,9 @@ const Sidebar = () => {
                 <hr className="my-4" />
 
                 <h1 className="font-semibold mb-3">Subscriptions</h1>
-                <SidebarItem icon="🎵" label="Music" />
+                <Link to="/category/music"><SidebarItem icon="🎵" label="Music" /></Link>
                 <SidebarItem icon="🏏" label="Sports" />
-                <SidebarItem icon="🎮" label="Gaming" />
+                <Link to="/category/gaming"><SidebarItem icon="🎮" label="Gaming" /></Link>
                 <SidebarItem icon="🎬" label="Movies" />
 
                 <hr className="my-4" />
@@ -40,7 +40,6 @@ const Sidebar = () => {
                 <SidebarItem icon="🛍️" label="Shopping" />
                 <SidebarItem icon="🎶" label="Music" />
                 <SidebarItem icon="🎥" label="Live" />
-                <SidebarItem icon="🎮" label="Gaming" />
 
                 <hr className="my-4" />
                 <h1 className="font-semibold mb-3">More from YouTube</h1>
