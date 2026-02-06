@@ -1,23 +1,22 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import VideoContainer from "./videoContainer";
-import { YOUTUBE_GAMING_API, YOUTUBE_MUSIC_API } from "../utils/Constants";
+import VideoContainer from "./videoContainer"
+import { categoryConfig } from "../utils/categoryConfig";
+import { YOUTUBE_VIDEOS_API } from "../utils/Constants";
 
 const CategoryPage = () => {
     const { type } = useParams();
 
-    let api = null;
-    let title = "";
+    const category = categoryConfig[type];
 
-    if (type === "gaming") {
-        api = YOUTUBE_GAMING_API;
-        title = "Gaming";
+    if (!category) {
+        return <h1 className="p-4 text-xl">Category not found</h1>;
     }
 
-    if (type === "music") {
-        api = YOUTUBE_MUSIC_API;
-        title = "Music";
-    }
+    const { title, categoryId } = category;
+
+    const api =
+        `${YOUTUBE_VIDEOS_API}&videoCategoryId=${categoryId}`;
 
     return (
         <div>
