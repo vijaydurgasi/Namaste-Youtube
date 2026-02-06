@@ -5,6 +5,4 @@ export const buttonConfig = [
     { label: "News", type: "news" },
     { label: "Movies", type: "movies" },
     { label: "Education", type: "education" },
-    { label: "Trending", type: "trending" },
-
 ];
