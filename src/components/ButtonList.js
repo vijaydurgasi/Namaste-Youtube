@@ -1,13 +1,11 @@
-import React from 'react'
+import React from 'react';
 import Button from './Button';
 import { buttonConfig } from '../utils/buttonConfig';
 
 const ButtonList = () => {
-
     return (
-
-        <div className='sticky top-14 z-10 bg-white'>
-            <div className='flex gap-2 px-2 py-2 overflow-x-auto whitespace-nowrap'>
+        <div className='bg-white'>
+            <div className='flex gap-3 px-3 py-3 overflow-x-auto whitespace-nowrap'>
                 {buttonConfig.map((item) => (
                     <Button
                         key={item.label}
@@ -15,7 +13,6 @@ const ButtonList = () => {
                         type={item.type}
                     />
                 ))}
-
             </div>
         </div>
     );

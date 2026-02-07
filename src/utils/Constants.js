@@ -17,3 +17,6 @@ export const YOUTUBE_SEARCH_API = "http://suggestqueries.google.com/complete/sea
 export const YOUTUBE_GAMING_API = "https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics&chart=mostPopular&videoCategoryId=20&regionCode=IN&maxResults=20&key=" + API_KEY;
 
 export const YOUTUBE_MUSIC_API = "https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics&chart=mostPopular&videoCategoryId=10&regionCode=IN&maxResults=20&key=" + API_KEY;
+
+export const SEARCH_RESULT_URL = (query) => `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=20&q=${query}&key=${API_KEY}`;
+

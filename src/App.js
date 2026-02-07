@@ -8,6 +8,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import MainContainer from "./components/MainContainer"
 import WatchPage from "./components/WatchPage";
 import CategoryPage from "./components/CategoryPage";
+import SearchPage from "./components/searchPage";
 
 
 function App({ info }) {
@@ -27,6 +28,10 @@ function App({ info }) {
       {
         path: "category/:type",
         element: <CategoryPage />
+      },
+      {
+        path: "results",
+        element: <SearchPage />
       }
     ]
   }]);
