@@ -15,7 +15,12 @@ function App({ info }) {
 
   const appRouter = createBrowserRouter([{
     path: "/",
-    element: <Body />,
+    element: (
+      <>
+        <Header />
+        <Body />
+      </>
+    ),
     children: [
       {
         path: "/",
@@ -39,7 +44,7 @@ function App({ info }) {
   return (
     <Provider store={store}>
       <div>
-        <Header />
+        {/* <Header /> */}
         <RouterProvider router={appRouter} />
       </div>
     </Provider>

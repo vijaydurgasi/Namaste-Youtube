@@ -3,9 +3,20 @@ import { Hamburger_URL, UserIcon_URL, YOUTUBE_SEARCH_API, YouTube_Logo_URL, sear
 import { useDispatch, useSelector } from "react-redux";
 import { togglemenu } from "../utils/appSlice";
 import { cacheResults } from "../utils/searchSlice";
+import { useNavigate } from "react-router-dom";
+
 
 
 const Header = () => {
+
+    const navigate = useNavigate();
+
+    const handleSearch = (searchText) => {
+        if (!searchText) return;
+        navigate(`/results?search_query=${searchText}`);
+        setShowSuggestions(false);
+        setSearchQuery(searchText);
+    };
 
     const [searchQuery, setSearchQuery] = useState("");
     const [suggestions, setSuggestions] = useState([]);
@@ -78,6 +89,12 @@ const Header = () => {
                         onChange={(e) => setSearchQuery(e.target.value)}
                         onFocus={() => setShowSuggestions(true)}
                         onBlur={() => setShowSuggestions(false)}
+                        onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                                handleSearch(searchQuery);
+                                setShowSuggestions(false);
+                            }
+                        }}
                         className="w-full h-10 px-4 text-sm border border-gray-300 rounded-l-full focus:outline-none focus:border-blue-500" />
 
                     <button className="h-10 px-6 border border-l-0 border-gray-300 rounded-r-full flex items-center justify-center hover:bg-gray-100">
@@ -92,6 +109,7 @@ const Header = () => {
                                 {suggestions.map((s) => (
                                     <li
                                         key={s}
+                                        onMouseDown={() => handleSearch(s)}
                                         className="flex items-center gap-3 px-4 py-2 hover:bg-gray-100 cursor-pointer text-sm"
                                     >
                                         <span className="text-gray-500">🔍</span>
