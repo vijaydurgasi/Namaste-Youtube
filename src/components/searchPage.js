@@ -26,32 +26,38 @@ const SearchPage = () => {
     };
 
     return (
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-6 p-3 md:p-6">
             {videos?.map((video) => (
-                <Link to={`/watch?v=${video.id.videoId}`}><div
+                <Link
                     key={video.id.videoId}
-                    className="flex gap-4 cursor-pointer hover:bg-gray-100 p-2 rounded-lg transition"
+                    to={`/watch?v=${video.id.videoId}`}
                 >
-                    <img
-                        src={video.snippet.thumbnails.medium.url}
-                        alt={video.snippet.title}
-                        className="w-72 h-40 object-cover rounded-lg"
-                    />
+                    <div className="flex flex-col md:flex-row gap-3 md:gap-4 cursor-pointer hover:bg-gray-100 p-3 rounded-lg transition">
 
-                    <div className="flex flex-col">
-                        <h2 className="text-lg font-semibold">
-                            {video.snippet.title}
-                        </h2>
+                        {/* Thumbnail */}
+                        <img
+                            src={video.snippet.thumbnails.medium.url}
+                            alt={video.snippet.title}
+                            className="w-full md:w-72 aspect-video object-cover rounded-lg"
+                        />
 
-                        <p className="text-sm text-gray-600 mt-1">
-                            {video.snippet.channelTitle}
-                        </p>
+                        {/* Text Section */}
+                        <div className="flex flex-col flex-1">
+                            <h2 className="text-base md:text-lg font-semibold line-clamp-2">
+                                {video.snippet.title}
+                            </h2>
 
-                        <p className="text-sm text-gray-500 mt-2 line-clamp-2">
-                            {video.snippet.description}
-                        </p>
+                            <p className="text-sm text-gray-600 mt-1">
+                                {video.snippet.channelTitle}
+                            </p>
+
+                            <p className="text-sm text-gray-500 mt-2 line-clamp-2">
+                                {video.snippet.description}
+                            </p>
+                        </div>
+
                     </div>
-                </div></Link>
+                </Link>
             ))}
         </div>
     );

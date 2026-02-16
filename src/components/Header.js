@@ -5,8 +5,6 @@ import { togglemenu } from "../utils/appSlice";
 import { cacheResults } from "../utils/searchSlice";
 import { useNavigate } from "react-router-dom";
 
-
-
 const Header = () => {
 
     const navigate = useNavigate();
@@ -80,7 +78,7 @@ const Header = () => {
                         alt="YouTube"
                         className="h-12 cursor-pointer " />
                 </div>
-                <div className="relative flex items-center w-[45%] min-w-[300px] max-w-[600px]">
+                <div className="relative flex items-center flex-1 mx-2 max-w-[600px]">
 
                     <input
                         type="text"
@@ -122,7 +120,7 @@ const Header = () => {
                     )}
                 </div>
 
-                <div className="flex items-center">
+                <div className="flex items-center gap-2">
                     <button className="h-10 px-6 cursor-pointer">
                         <img
                             src={UserIcon_URL}

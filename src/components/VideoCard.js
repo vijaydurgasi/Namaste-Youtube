@@ -9,13 +9,35 @@ const VideoCard = ({ info }) => {
     if (!title) return null;
 
     return (
-        <div className="border border-gray-200 m-2 p-2 w-80 h-64 bg-gray-100 rounded-lg shadow-md hover:shadow-xl transform hover:-translate-y-1  transition-all duration-300 ease-in-out cursor-pointer ">
-            <img className="w-full h-40 object-cover rounded-lg" src={info?.snippet?.thumbnails?.medium?.url} alt={title} />
-            <h3 className="font-bold mt-2 truncate">{title}</h3>
-            <p className="text-sm text-gray-600">{channelTitle}</p>
-            <p> {formatViewCount(viewCount)} views</p>
+        <div className="w-full bg-gray-100 rounded-lg shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 ease-in-out cursor-pointer overflow-hidden">
+
+            {/* Thumbnail */}
+            <div className="w-full aspect-video">
+                <img
+                    className="w-full h-full object-cover"
+                    src={info?.snippet?.thumbnails?.medium?.url}
+                    alt={title}
+                />
+            </div>
+
+            {/* Text */}
+            <div className="p-3">
+                <h3 className="font-semibold text-sm md:text-base line-clamp-2">
+                    {title}
+                </h3>
+
+                <p className="text-xs md:text-sm text-gray-600 mt-1">
+                    {channelTitle}
+                </p>
+
+                <p className="text-xs text-gray-500">
+                    {formatViewCount(viewCount)} views
+                </p>
+            </div>
+
         </div>
     );
+
 };
 
 

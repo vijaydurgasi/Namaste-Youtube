@@ -5,7 +5,13 @@ import { buttonConfig } from '../utils/buttonConfig';
 const ButtonList = () => {
     return (
         <div className='bg-white'>
-            <div className='flex gap-3 px-3 py-3 overflow-x-auto whitespace-nowrap'>
+            <div className='
+flex flex-wrap md:flex-nowrap
+gap-2 md:gap-3
+px-3 py-3
+overflow-x-visible md:overflow-x-auto
+'>
+
                 {buttonConfig.map((item) => (
                     <Button
                         key={item.label}
