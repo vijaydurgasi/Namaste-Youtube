@@ -34,14 +34,12 @@ const SearchPage = () => {
                 >
                     <div className="flex flex-col md:flex-row gap-3 md:gap-4 cursor-pointer hover:bg-gray-100 p-3 rounded-lg transition">
 
-                        {/* Thumbnail */}
                         <img
                             src={video.snippet.thumbnails.medium.url}
                             alt={video.snippet.title}
                             className="w-full md:w-72 aspect-video object-cover rounded-lg"
                         />
 
-                        {/* Text Section */}
                         <div className="flex flex-col flex-1">
                             <h2 className="text-base md:text-lg font-semibold line-clamp-2">
                                 {video.snippet.title}
