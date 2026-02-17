@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Hamburger_URL, UserIcon_URL, YOUTUBE_SEARCH_API, YouTube_Logo_URL, search_icon_URL } from "../utils/Constants";
+import { Hamburger_URL, UserIcon_URL, YouTube_Logo_URL, search_icon_URL } from "../utils/Constants";
 import { useDispatch, useSelector } from "react-redux";
 import { togglemenu } from "../utils/appSlice";
 import { cacheResults } from "../utils/searchSlice";
@@ -29,7 +29,7 @@ const Header = () => {
         if (!searchQuery.trim()) return;
 
         const getSearchSuggestion = async () => {
-            const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
+            const data = await fetch(`/api/search?q=${searchQuery}`);
             const json = await data.json();
 
             setSuggestions(json[1]);
