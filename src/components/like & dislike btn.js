@@ -11,7 +11,7 @@ const LikeDislike = () => {
                     setLiked(prev => (prev === "like" ? null : "like"))
                 }
                 className={`px-4 py-2 rounded-full border transition-colors duration-200
-               ${liked === "like" ? "bg-black text-white" : "bg-white text-black"} `}
+               ${liked === "like" ? "bg-black " : "bg-white "} `}
             >
                 👍
             </button>
@@ -21,7 +21,7 @@ const LikeDislike = () => {
                     setLiked(prev => (prev === "dislike" ? null : "dislike"))
                 }
                 className={`px-4 py-2 rounded-full border transition-colors duration-200
-                  ${liked === "dislike" ? "bg-black text-white" : "bg-white text-black"} `}
+                  ${liked === "dislike" ? "bg-black" : "bg-white"} `}
             >
                 👎
             </button>
