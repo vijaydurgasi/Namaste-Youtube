@@ -8,7 +8,7 @@ const LikeDislike = () => {
 
             <button
                 onClick={() => setLiked(liked === "like" ? null : "like")}
-                className={`px-4 py-2 rounded-full border hover:bg-gray-100 
+                className={`px-4 py-2 rounded-full border
           ${liked === "like" ? "bg-black text-white" : "bg-transparent"}
         `}
             >
@@ -17,7 +17,7 @@ const LikeDislike = () => {
 
             <button
                 onClick={() => setLiked(liked === "dislike" ? null : "dislike")}
-                className={`px-4 py-2 rounded-full border  hover:bg-gray-100 
+                className={`px-4 py-2 rounded-full border 
           ${liked === "dislike" ? "bg-black text-white" : "bg-transparent"}
         `}
             >
