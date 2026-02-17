@@ -11,19 +11,20 @@ const SearchPage = () => {
 
     useEffect(() => {
         if (!query) return;
+
+        const fetchSearchResults = async () => {
+            try {
+                const data = await fetch(SEARCH_RESULT_URL(query));
+                const json = await data.json();
+                console.log("search DATA", json);
+                setVideos(json.items || []);
+            } catch (error) {
+                console.error("Error fetching search results:", error);
+            }
+        };
+
         fetchSearchResults();
     }, [query]);
-
-    const fetchSearchResults = async () => {
-        try {
-            const data = await fetch(SEARCH_RESULT_URL(query));
-            const json = await data.json();
-            console.log("search DATA", json);
-            setVideos(json.items || []);
-        } catch (error) {
-            console.error("Error fetching search results:", error);
-        }
-    };
 
     return (
         <div className="flex flex-col gap-6 p-3 md:p-6">
