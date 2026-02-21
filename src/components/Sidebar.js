@@ -1,78 +1,117 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { togglemenu } from "../utils/appSlice";
 
 const Sidebar = () => {
-
+    const dispatch = useDispatch();
     const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
 
-    if (!isMenuOpen) return null; // use shemmer here
+    const closeSidebar = () => {
+        dispatch(togglemenu());
+    };
 
     return (
-        <div className={`h-screen  flex-shrink-0 border-r border-gray-300 overflow-y-auto transition-[width] duration-300 ease-in-out ${isMenuOpen ? 'w-48' : "w-0"}`}>
+        <>
+            {isMenuOpen && (
+                <div
+                    onClick={closeSidebar}
+                    className="fixed inset-0 bg-black bg-opacity-40 z-40"
+                />
+            )}
 
-            <div className={` h-full overflow-y-auto transition-all duration-200 ease-in-out  ${isMenuOpen ? "opacity-100 translate-x-0 p-4" : "opacity-0 -translate-x-4 p-0"}`}>
+            <div
+                className={`
+          fixed top-14 left-0
+          h-[calc(100vh-56px)]
+          w-56
+          bg-white
+          border-r border-gray-300
+          overflow-y-auto
+          z-50
+          transform transition-transform duration-300 ease-in-out
+          ${isMenuOpen ? "translate-x-0" : "-translate-x-full"}
+        `}
+            >
+                <div className="p-4 space-y-2">
 
-                <h1 className="font-semibold mb-3">Home</h1>
-                <Link to={"/"}><SidebarItem icon="🏠" label="Home" /></Link>
+                    <SectionTitle title="Home" />
+                    <Link to="/" onClick={closeSidebar}>
+                        <SidebarItem icon="🏠" label="Home" />
+                    </Link>
 
-                <hr className="my-4" />
+                    <Divider />
 
-                <h1 className="font-semibold mb-3">Subscriptions</h1>
+                    <SectionTitle title="Subscriptions" />
+                    <Link to="/category/music" onClick={closeSidebar}>
+                        <SidebarItem icon="🎵" label="Music" />
+                    </Link>
+                    <Link to="/category/sports" onClick={closeSidebar}>
+                        <SidebarItem icon="🏏" label="Sports" />
+                    </Link>
+                    <Link to="/category/gaming" onClick={closeSidebar}>
+                        <SidebarItem icon="🎮" label="Gaming" />
+                    </Link>
+                    <Link to="/category/movies" onClick={closeSidebar}>
+                        <SidebarItem icon="🎬" label="Movies" />
+                    </Link>
 
-                <Link to="/category/music"><SidebarItem icon="🎵" label="Music" /></Link>
+                    <Divider />
 
-                <Link to="/category/sports"><SidebarItem icon="🏏" label="Sports" /></Link>
+                    <SectionTitle title="You" />
+                    <SidebarItem icon="🕒" label="History" onClick={closeSidebar} />
+                    <SidebarItem icon="⏰" label="Watch Later" onClick={closeSidebar} />
+                    <SidebarItem icon="👍" label="Liked Videos" onClick={closeSidebar} />
+                    <SidebarItem icon="⬇️" label="Downloads" onClick={closeSidebar} />
 
-                <Link to="/category/gaming"><SidebarItem icon="🎮" label="Gaming" /></Link>
+                    <Divider />
 
-                <Link to="/category/movies"><SidebarItem icon="🎬" label="Movies" /></Link>
+                    <SectionTitle title="Explore" />
+                    <Link to="/category/comedy" onClick={closeSidebar}>
+                        <SidebarItem icon="😂" label="Comedy" />
+                    </Link>
+                    <Link to="/category/science" onClick={closeSidebar}>
+                        <SidebarItem icon="🔭" label="Science" />
+                    </Link>
+                    <SidebarItem icon="🎥" label="Live" onClick={closeSidebar} />
 
-                <hr className="my-4" />
+                    <Divider />
 
+                    <SectionTitle title="More from YouTube" />
+                    <SidebarItem icon="💼" label="YouTube Premium" onClick={closeSidebar} />
+                    <SidebarItem icon="🎙️" label="YouTube Music" onClick={closeSidebar} />
+                    <SidebarItem icon="📺" label="YouTube TV" onClick={closeSidebar} />
+                    <SidebarItem icon="👾" label="YouTube Kids" onClick={closeSidebar} />
 
-                <h1 className="font-semibold mb-3">You</h1>
-                <SidebarItem icon="🕒" label="History" />
-                <SidebarItem icon="⏰" label="Watch Later" />
-                <SidebarItem icon="👍" label="Liked Videos" />
-                <SidebarItem icon="⬇️" label="Downloads" />
+                    <Divider />
 
-                <hr className="my-4" />
+                    <SidebarItem icon="⚙️" label="Settings" onClick={closeSidebar} />
+                    <SidebarItem icon="❓" label="Help" onClick={closeSidebar} />
+                    <SidebarItem icon="🚩" label="Report history" onClick={closeSidebar} />
+                    <SidebarItem icon="💬" label="Send feedback" onClick={closeSidebar} />
 
-                <h1 className="font-semibold mb-3">Explore</h1>
-
-                <Link to="/category/comedy"><SidebarItem icon="😂" label="comedy" /></Link>
-
-                <Link to="/category/science"><SidebarItem icon="🔭" label="science" /></Link>
-
-                <SidebarItem icon="🎥" label="Live" />
-
-                <hr className="my-4" />
-                <h1 className="font-semibold mb-3">More from YouTube</h1>
-                <SidebarItem icon="💼" label="YouTube Premium" />
-                <SidebarItem icon="🎙️" label="YouTube Music" />
-                <SidebarItem icon="📺" label="YouTube TV" />
-                <SidebarItem icon="👾" label="YouTube Kids" />
-
-                <hr className="my-4" />
-                <SidebarItem icon="⚙️" label="Settings" />
-                <SidebarItem icon="❓" label="Help" />
-                <SidebarItem icon="🚩" label="Report history" />
-                <SidebarItem icon="💬" label="Send feedback" />
-
+                </div>
             </div>
-
-        </div>
+        </>
     );
 };
 
-const SidebarItem = ({ icon, label }) => {
-    return (
-        <div className="flex items-center gap-3 py-2 px-2 rounded hover:bg-gray-100 cursor-pointer">
-            <span>{icon}</span>
-            <span className="text-sm">{label}</span>
-        </div>
-    );
-};
+const SectionTitle = ({ title }) => (
+    <h1 className="font-semibold text-sm text-gray-700 mt-2">{title}</h1>
+);
+
+const Divider = () => (
+    <hr className="my-3 border-gray-200" />
+);
+
+const SidebarItem = ({ icon, label, onClick }) => (
+    <div
+        onClick={onClick}
+        className="flex items-center gap-3 py-2 px-3 rounded-lg hover:bg-gray-100 cursor-pointer transition"
+    >
+        <span className="text-lg">{icon}</span>
+        <span className="text-sm">{label}</span>
+    </div>
+);
 
 export default Sidebar;
